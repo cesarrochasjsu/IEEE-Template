@@ -16,7 +16,7 @@
   - [[#conclusion][Conclusion]]
 
 * Introduction
-This IEEE LaTeX Template is for anyone willing to use LaTeX to write their reports. As much as I love Emacs Org-Mode, it lacks support for MLA or IEEE. One way to go around this is through literate programming. You may modify this template however they want.
+This IEEE LaTeX Template is for anyone willing to use LaTeX to write their reports. As much as I love Emacs Org-Mode, it lacks support for MLA or IEEE. One way to go around this is through literate programming. You may modify this template however you want.
 
 The purpose of this is to show that an IEEE template is possible through LaTeX. It also gives the reader an insight into how I go about writing reports. Enjoy.
 
@@ -65,7 +65,7 @@ Here is a sample introduction
 ** Example Logic Table
 I think LaTeX tables are barbaric. We have technology. One of them is the Tables provided by Emacs Org Mode. Here is a quick example:
 
-| \(X\) | \(X + \overline{X}\) |
+| X     | X + 'X               |
 |-------+----------------------|
 |     0 |                    1 |
 |     1 |                    1 |
