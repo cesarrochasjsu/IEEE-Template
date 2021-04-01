@@ -19,6 +19,7 @@
 This IEEE LaTeX Template is for anyone willing to use LaTeX to write their reports. As much as I love Emacs Org-Mode, it lacks support for MLA or IEEE. One way to go around this is through literate programming. You may modify this template however they want.
 
 The purpose of this is to show that an IEEE template is possible through LaTeX. It also gives the reader an insight into how I go about writing reports. Enjoy.
+[[main.pdf]]
 * Imports
 These are some of the packages you may want to include. The meat is in *IEEEtran*. The point of LaTeX is to input your info now, worry about how it looks later.
 #+begin_src latex
