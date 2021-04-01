@@ -1,0 +1,94 @@
+\documentclass[10pt]{IEEEtran} %Here is the thing that tells latex to IEEE your doc
+\usepackage[utf8]{inputenc}
+\usepackage{circuitikz} %Draws logic circuits
+\usepackage{amsmath} % Fancy Math Equations
+\usepackage{float} %Better Formatting
+\usepackage{graphicx} %images
+\usepackage{kantlipsum} % funniest lorem ipsum text, next to bacon ispum
+\usepackage{karnaugh-map} % How serendipitous
+
+\title{Class: Subject}
+\author{Name, ID, Class Date, Lab Section 0x}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\kant[1][1-2] % first pseudo-kantian paragraph. First two sentences
+\end{abstract}
+
+\section{Introduction}
+\kant[2] %Second pseudokantian paragraph
+
+\section{Design Methodology}
+\kant[3][1] %Third Kantian paragraph, Take four sentences
+\subsection{Truth Tables}
+\begin{center}
+\begin{tabular}{rr}
+X & \(X + \overline{X}\)\\
+\hline
+0 & 1\\
+1 & 1\\
+\end{tabular}
+\end{center}
+
+\subsection{Schematics}
+%X+X'%
+\begin{figure}[h!]
+    \centering
+\begin{circuitikz}
+\draw
+(0,2)         node (X1) [xshift=-1cm, anchor=east]           {X}
+(0,0)         node (mynot) [not port]            {}
+node (mynot.out) [anchor=north west,yshift=-0.1cm]            {$\overline{X}$}
+(4,1)      node (myor)  [or port]                   {}
+(myor.out)   node      [anchor=west]            {$X+\overline{X}$} ;
+\draw (X1) |- (myor.in 1);
+\draw (X1) |- (mynot.in);
+\draw (mynot.out) |- (myor.in 2);
+\end{circuitikz}
+    \caption{$g_1 =X + \overline{X}, g_2 = 1$}
+    \label{fig:one}
+\end{figure}
+
+\subsection{Karnaugh Map}
+\begin{center}
+\begin{karnaugh-map}[4][2][1][$BA$][$C$]
+  \manualterms{
+ 0,
+ 0,
+ 0,
+ 1,
+ 0,
+ 1,
+ 1,
+ 1
+  }
+  \implicant{3}{7}
+  \implicant{5}{7}
+  \implicant{7}{6}
+\end{karnaugh-map}
+\end{center}
+
+\[\framebox{\(F = AB + AC + BC\)}\]
+
+\subsection{State Diagram}
+\section{Testing Procedures}
+Warning: I run a \textbf{GNU/Linux} OS. Several problems arise from using \textbf{Logicworks}. Only Ubuntu is able to do such a thing through WINE. However, my computer is much too old to run a VM or anything of that sort. I settled with \textbf{Logisim} and it is enough to prove logical equivalence.
+
+Java is necessary to run it. Each GUI differs from OS to OS. Here are the steps to create a circuit
+\begin{enumerate}
+    \item Place a square shaped input pin(input signal) anywhere convenient on the circuit -- Choose constant signals for problem 3 and 4.
+    \item Select an \textbf{and}, \textbf{or}, or \textbf{not} gate from the menu.
+    \item Place them according to the precedence of their operation to generate a \textbf{statement}.
+    \item Select a circle shaped pin (output signal), and place anywhere -- opt to place it right of the circuit for easy wiring.
+    \item Wire the circuit by clicking and dragging the wires on the components.
+    \item Go to the \textbf{project} tab on your GUI and select \textbf{analyze circuit}
+\end{enumerate}
+\textbf{Logisim} Now generated the respective truth table. The \textbf{statement} for the circuit shall be in infix notation if wired correctly.
+\section{Testing Results}
+The truth tables generated matched line for line for each equation given. Thus, all equations were logically equivalent.
+\section{Conclusion}
+\kant[42]
+\end{document}

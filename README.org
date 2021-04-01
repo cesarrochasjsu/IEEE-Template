@@ -1,0 +1,146 @@
+#+TITLE: IEEE LaTeX Template
+#+PROPERTY: header-args :tangle main.tex
+
+* Introduction
+This IEEE LaTeX Template is for anyone willing to use LaTeX to write their reports. As much as I love Emacs Org-Mode, it lacks support for MLA or IEEE. One way to go around this is through literate programming. You may modify this template however they want.
+
+The purpose of this is to show that an IEEE template is possible through LaTeX. It also gives the reader an insight into how I go about writing reports. Enjoy.
+
+* Imports
+These are some of the packages you may want to include. The meat is in *IEEEtran*. The point of LaTeX is to input your info now, worry about how it looks later.
+#+begin_src latex
+\documentclass[10pt]{IEEEtran} %Here is the thing that tells latex to IEEE your doc
+\usepackage[utf8]{inputenc}
+\usepackage{circuitikz} %Draws logic circuits
+\usepackage{amsmath} % Fancy Math Equations
+\usepackage{float} %Better Formatting
+\usepackage{graphicx} %images
+\usepackage{kantlipsum} % funniest lorem ipsum text, next to bacon ispum
+\usepackage{karnaugh-map} % How serendipitous
+#+end_src
+
+* Title Page
+This is pretty self-explanatory.
+#+begin_src latex
+\title{Class: Subject}
+\author{Name, ID, Class Date, Lab Section 0x}
+\date{\today}
+#+end_src
+* Document
+Instead of worrying about curly braces, I have to worry about where I end this document. We'll deal with that later.
+** Begin Document
+#+begin_src latex
+\begin{document}
+\maketitle
+#+end_src
+** Abstract
+LaTeX provides a package to format your abstract. Here is an example of one the funniest latex packages [[https://mirror.las.iastate.edu/tex-archive/macros/latex/contrib/kantlipsum/kantlipsum.pdf][Kant Ipsum]].
+
+#+begin_src latex
+\begin{abstract}
+\kant[1][1-2] % first pseudo-kantian paragraph. First two sentences
+\end{abstract}
+#+end_src
+** Introduction
+Here is a sample introduction
+#+begin_src latex
+\section{Introduction}
+\kant[2] %Second pseudokantian paragraph
+#+end_src
+
+** Example Logic Table
+I think LaTeX tables are barbaric. We have technology. One of them is the Tables provided by Emacs Org Mode. Here is a quick example:
+
+| \(X\) | \(X + \overline{X}\) |
+|-------+----------------------|
+|     0 |                    1 |
+|     1 |                    1 |
+
+
+#+begin_src latex
+\section{Design Methodology}
+\kant[3][1] %Third Kantian paragraph, Take four sentences
+\subsection{Truth Tables}
+\begin{center}
+\begin{tabular}{rr}
+X & \(X + \overline{X}\)\\
+\hline
+0 & 1\\
+1 & 1\\
+\end{tabular}
+\end{center}
+#+end_src
+
+** Sample CircuitTikZ Logic Circuit
+The terminal may grow on you, however it still is not suitable for any graphic work. This is one of the places where it lags behind. I included this example to warn you of the difficulties of using CircuitTikZ.
+
+#+begin_src latex
+\subsection{Schematics}
+%X+X'%
+\begin{figure}[h!]
+    \centering
+\begin{circuitikz}
+\draw
+(0,2)         node (X1) [xshift=-1cm, anchor=east]           {X}
+(0,0)         node (mynot) [not port]            {}
+node (mynot.out) [anchor=north west,yshift=-0.1cm]            {$\overline{X}$}
+(4,1)      node (myor)  [or port]                   {}
+(myor.out)   node      [anchor=west]            {$X+\overline{X}$} ;
+\draw (X1) |- (myor.in 1);
+\draw (X1) |- (mynot.in);
+\draw (mynot.out) |- (myor.in 2);
+\end{circuitikz}
+    \caption{$g_1 =X + \overline{X}, g_2 = 1$}
+    \label{fig:one}
+\end{figure}
+#+end_src
+
+** Sample Karnaugh Map
+In LaTeX, there is a package to draw Karnaugh Maps, be mindful as you must know how they work in order for you to use them. Otherwise you'll waste hours of your day reading documentation.
+#+begin_src latex
+\subsection{Karnaugh Map}
+\begin{center}
+\begin{karnaugh-map}[4][2][1][$BA$][$C$]
+  \manualterms{
+ 0,
+ 0,
+ 0,
+ 1,
+ 0,
+ 1,
+ 1,
+ 1
+  }
+  \implicant{3}{7}
+  \implicant{5}{7}
+  \implicant{7}{6}
+\end{karnaugh-map}
+\end{center}
+
+\[\framebox{\(F = AB + AC + BC\)}\]
+#+end_src
+** State Diagram (Just For Fun)
+The TikZ package isn't fun. However, I am in love with graphviz dot. They make the drawing of state diagrams a breeze.
+
+#+begin_src latex
+\subsection{State Diagram}
+\section{Testing Procedures}
+Warning: I run a \textbf{GNU/Linux} OS. Several problems arise from using \textbf{Logicworks}. Only Ubuntu is able to do such a thing through WINE. However, my computer is much too old to run a VM or anything of that sort. I settled with \textbf{Logisim} and it is enough to prove logical equivalence.
+
+Java is necessary to run it. Each GUI differs from OS to OS. Here are the steps to create a circuit
+\begin{enumerate}
+    \item Place a square shaped input pin(input signal) anywhere convenient on the circuit -- Choose constant signals for problem 3 and 4.
+    \item Select an \textbf{and}, \textbf{or}, or \textbf{not} gate from the menu.
+    \item Place them according to the precedence of their operation to generate a \textbf{statement}.
+    \item Select a circle shaped pin (output signal), and place anywhere -- opt to place it right of the circuit for easy wiring.
+    \item Wire the circuit by clicking and dragging the wires on the components.
+    \item Go to the \textbf{project} tab on your GUI and select \textbf{analyze circuit}
+\end{enumerate}
+\textbf{Logisim} Now generated the respective truth table. The \textbf{statement} for the circuit shall be in infix notation if wired correctly.
+\section{Testing Results}
+The truth tables generated matched line for line for each equation given. Thus, all equations were logically equivalent.
+\section{Conclusion}
+\kant[42]
+\end{document}
+#+end_src
+** Introduction
