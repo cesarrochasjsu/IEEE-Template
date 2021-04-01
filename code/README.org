@@ -163,6 +163,7 @@ Figure \ref{fig:state-diagram} shows a state diagram.
 #+end_src
 
 ** Conclusion
+This is where I close the document. Thank you for making it this far.
 #+begin_src latex
 \section{Conclusion}
 \kant[42][1-3]
