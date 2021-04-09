@@ -25,6 +25,8 @@
 
 > What One Fool Can Do, Another Can. 
 
+IEEE is a common format for writing lab reports. For those who want to experiment with LaTeX, feel free to steal this template. 
+
 # Install
 ``` sh
 git clone https://github.com/cesarrochasjsu/IEEE-Template.git
